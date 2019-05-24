@@ -25,6 +25,7 @@
 		<module>development-news-server</module>
 		<module>development-news-repo</module>
 		<module>development-news-crawler</module>
+		<module>developmente-news-gateway</module>
 	</modules>
 
 	<dependencies>
