@@ -5,13 +5,9 @@ const url = 'https://www.infoq.com/br/java/news';
 
 const requestCallBack = (error, response, body) => {
     const data = parseBody(body);
-    console.log(data);
+    //make the http post to microservice
+    //with the generated data from infoq
 }
-
-const getData = (url) => {
-    request(url, requestCallBack);
-}
-
 
 const parseBody = (body) => {
     const $  = cheerio.load(body);
@@ -26,6 +22,8 @@ const parseBody = (body) => {
     return data;
 }
 
+const getData = (url) => {
+    request(url, requestCallBack);
+}
 
 getData(url);
-
