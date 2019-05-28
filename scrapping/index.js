@@ -1,13 +1,8 @@
 const cheerio = require('cheerio');
-const request = require('request');
+const request = require('request-promise');
 
 const url = 'https://www.infoq.com/br/java/news';
 
-const requestCallBack = (error, response, body) => {
-    const data = parseBody(body);
-    //make the http post to microservice
-    //with the generated data from infoq
-}
 
 const parseBody = (body) => {
     const $  = cheerio.load(body);
@@ -23,7 +18,18 @@ const parseBody = (body) => {
 }
 
 const getData = (url) => {
-    request(url, requestCallBack);
+    return request(url)
+    .then((body) => {
+        return parseBody(body);
+    })
+    ;
 }
 
-getData(url);
+const data = getData(url);
+
+const handler = function (event, context, callback) {
+    data.then(data => callback(null, data));
+};
+
+exports.handler = handler;
+
