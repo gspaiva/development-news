@@ -19,9 +19,8 @@ public class NewsService {
     }
 
     @Transactional
-    public News insert(News news){
-        news.setId(null);
-        news = newsRepository.save(news);
+    public List<News> insert(List<News> news){
+        news = newsRepository.saveAll(news);
         return news;
     }
 

@@ -1,5 +1,7 @@
 package com.development.news.developmentnewsrepo.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ public class News implements Serializable {
     private Integer id;
     private String title;
     private String url;
+    @Length(max = 1000)
     private String description;
     private String authorName;
 

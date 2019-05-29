@@ -29,9 +29,9 @@ public class NewsResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<News> insert(@RequestBody News news){
+    public ResponseEntity<List<News>> insert(@RequestBody List<News> news){
         news = newsService.insert(news);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(news.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().toUri();
         return ResponseEntity.created(uri).body(news);
     }
 
