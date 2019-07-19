@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  service-server:
+    image: service-server
+    ports:
+      - "8761:8761"
+    networks:
+      - backend
+  service-gateway:
+    depends_on:
+      - service-server
+    image: service-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+  service-repo:
+    depends_on:
+      - service-server
+    image: service-repo
+    ports:
+      - "8081:8081"
+    networks:
+      - backend
+    deploy:
+      replicas: 2
+      mode: replicated
+networks:
+  backend:
+    driver: overlay

@@ -52,7 +52,7 @@ const handler = function (event, context, callback) {
         return saveData(data);
     })
     .then((response) => {
-        data.then(data => callback(null, response));
+        callback(null, response);
     });
 };
 

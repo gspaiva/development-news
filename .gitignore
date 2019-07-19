@@ -31,3 +31,7 @@ HELP.md
 
 #### NODE MODULES ####
 /scrapping/node_modules
+
+
+##### PROD STUFF ######
+**/*prod*
