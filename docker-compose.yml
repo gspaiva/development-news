@@ -19,13 +19,12 @@ services:
     depends_on:
       - service-server
     image: service-repo
+    environment:
+      - PROFILE=dev
     ports:
       - "8081:8081"
     networks:
       - backend
-    deploy:
-      replicas: 2
-      mode: replicated
 networks:
   backend:
-    driver: overlay
+    driver: bridge
