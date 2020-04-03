@@ -5,10 +5,7 @@ import com.development.news.developmentnewsrepo.domain.News;
 import com.development.news.developmentnewsrepo.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -22,19 +19,17 @@ public class NewsResource {
     @Autowired
     private NewsService newsService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<List<News>> list(){
         List<News> news = newsService.list();
         return ResponseEntity.ok().body(news);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<List<News>> insert(@RequestBody List<News> news){
         news = newsService.insert(news);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().toUri();
         return ResponseEntity.created(uri).body(news);
     }
-
-
 
 }
